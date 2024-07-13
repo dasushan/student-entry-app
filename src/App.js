@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Header from "./components/Layout/Header";
+import StudentForm from "./components/NewStudent/StudentForm";
+import { useState} from "react";
+import StudentProvider from "./store/StudentProvider";
+import StudentList from "./components/Students/StudentList";
 function App() {
+  const [formIsShown, setFormIsShown] = useState(false);
+  const showFormHandler = () => {
+    setFormIsShown(true)
+  }
+  const closeFormHandler = () => {
+    setFormIsShown(false);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StudentProvider>
+      <Header onShowForm = {showFormHandler}/>
+      { formIsShown && <StudentForm onCloseForm={closeFormHandler}/> }
+      <StudentList onShowForm = {showFormHandler}/>
+    </StudentProvider>
+      
+    
   );
 }
 

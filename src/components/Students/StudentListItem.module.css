@@ -1,0 +1,5 @@
+.list-item {
+   display: flex;
+   width: 50rem;
+   gap: 1rem;
+}
